@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -47,7 +51,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_login_id" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_login_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
@@ -63,6 +67,7 @@
             app:layout_constraintTop_toBottomOf="@+id/edt_login_pw" />
 
         <Button
+            android:id="@+id/btn_login_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
@@ -75,7 +80,7 @@
             android:theme="@style/ButtonStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_login" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

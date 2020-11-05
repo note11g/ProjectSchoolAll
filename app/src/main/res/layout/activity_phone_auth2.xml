@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="phoneNum"
+            name="authKey"
             type="String" />
-
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/pink_100">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquareb"
-            android:text="회원가입을 진행할 휴대폰 번호를 입력해주세요."
+            android:text="문자로 발송된 인증번호를 입력해주세요."
             android:textColor="@color/pink_700"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edt_auth_phone_1"
+            android:id="@+id/edt_auth_phone_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
             android:background="@drawable/round_box"
-            app:layout_constraintBottom_toTopOf="@+id/btn_auth_phone1"
-            android:hint="01012345678"
-            android:theme="@style/EditTextStyle"
-            android:inputType="phone"
-            android:textColor="@color/pink_100"
-            android:text="@={phoneNum}"
             app:layout_constraintVertical_chainStyle="packed"
+            android:hint="인증번호 입력"
+            android:text="@={authKey}"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:theme="@style/EditTextStyle"
+            app:layout_constraintBottom_toTopOf="@+id/btn_auth_phone2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btn_auth_phone1"
+            android:id="@+id/btn_auth_phone2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
-            android:layout_marginTop="12dp"
             android:background="@drawable/round_box"
-            android:text="다음"
-            android:theme="@style/ButtonStyle"
+            android:layout_marginTop="16dp"
+            android:text="확인"
+            android:letterSpacing="0"
             android:fontFamily="@font/nanumsquareb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_auth_phone_1" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_auth_phone_2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
