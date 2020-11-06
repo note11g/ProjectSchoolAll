@@ -55,12 +55,12 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
 
-        tv_timetable = (TextView) container.findViewById(R.id.tv_timetable);
-        tv_timetable.setText(" ");
-        tv_lunch = (TextView) container.findViewById(R.id.tv_lunch);
-        tv_lunch.setText(" ");
-        tv_EduScadu = (TextView) container.findViewById(R.id.tv_EduScadu);
-        tv_EduScadu.setText(" ");
+        tv_timetable = binding.tvTimetable;
+        tv_timetable.setText("");
+        tv_lunch = binding.tvLunch;
+        tv_lunch.setText("");
+        tv_EduScadu = binding.tvEduScadu;
+        tv_EduScadu.setText("");
 
         Define.ins().today = new SimpleDateFormat("yyyyMMdd").format(new Date());
         System.out.println("여기에요 여기" + Define.ins().today);
