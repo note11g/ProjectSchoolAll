@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="schoolName"
+            type="String" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Toolbar
+            android:id="@+id/toolbar_find_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquareb"
+                android:gravity="center"
+                android:text="학교검색"
+                android:textColor="@color/blue_500"
+                android:textSize="18sp" />
+        </Toolbar>
+
+        <EditText
+            android:id="@+id/edt_find_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue_300"
+            android:fontFamily="@font/nanumsquareb"
+            android:hint="검색할 학교 이름"
+            android:inputType="textCapSentences"
+            android:padding="18dp"
+            android:text="@={schoolName}"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_find_school" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/search_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_find_school"
+            app:layout_constraintEnd_toEndOf="@+id/edt_find_school"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_find_school" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_find_school" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

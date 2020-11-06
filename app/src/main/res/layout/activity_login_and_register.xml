@@ -5,36 +5,54 @@
         <variable
             name="phoneNum"
             type="String" />
-
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:backgroundTint="@color/pink_100">
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquareb"
-            android:text="휴대전화 번호를 입력해주세요."
+            android:lineSpacingExtra="4dp"
+            android:text="즐거운 학교 생활을 한눈에!"
             android:textColor="@color/pink_700"
-            android:textSize="16sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/kopubm"
+            android:text="전화번호로 로그인(가입)할 수 있어요!"
+            android:textSize="15sp"
+            android:letterSpacing="0.015"
+            android:textColor="@color/materialGray5"
+            app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <EditText
             android:id="@+id/edt_auth_phone_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
-            android:background="@drawable/round_box"
             app:layout_constraintBottom_toTopOf="@+id/btn_auth_phone1"
             android:hint="01012345678"
-            android:theme="@style/EditTextStyle"
+            android:fontFamily="@font/nanumsquareb"
+            android:textColorHint="@color/pink_500"
+            android:textColor="@color/pink_500"
+            android:background="@drawable/round_corner"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="20dp"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
             android:inputType="phone"
-            android:textColor="@color/white"
             android:text="@={phoneNum}"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintEnd_toEndOf="parent"

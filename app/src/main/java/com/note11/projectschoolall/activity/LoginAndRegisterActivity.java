@@ -31,7 +31,7 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private ActivityLoginAndRegisterBinding binding;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private String vId;
+    private String vId, phoneNum;
 
 
     @Override
@@ -43,20 +43,18 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             @Override
-            public void onVerificationCompleted(PhoneAuthCredential credential) {
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential credential) {
                 Toast.makeText(LoginAndRegisterActivity.this, "성공!", Toast.LENGTH_SHORT).show();
                 LoginAndRegisterActivity.this.finish();
-                //signInWithPhoneAuthCredential(credential);
+                signInWithPhoneAuthCredential(credential);
             }
 
             @Override
-            public void onVerificationFailed(FirebaseException e) {
-
-                if (e instanceof FirebaseAuthInvalidCredentialsException) {
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+                if (e instanceof FirebaseAuthInvalidCredentialsException)
                     Toast.makeText(LoginAndRegisterActivity.this, "잘못된 전화번호입니다.", Toast.LENGTH_LONG).show();
-                } else if (e instanceof FirebaseTooManyRequestsException) {
+                else if (e instanceof FirebaseTooManyRequestsException)
                     Toast.makeText(LoginAndRegisterActivity.this, "sms를 너무 많이 보냈습니다. 잠시 후 다시 실행해주세요.", Toast.LENGTH_LONG).show();
-                }
             }
 
             @Override
@@ -64,14 +62,16 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
                                    @NonNull PhoneAuthProvider.ForceResendingToken token) {
                 Intent intent = new Intent(LoginAndRegisterActivity.this, PhoneAuth2Activity.class);
                 startActivityForResult(intent, 1);
-
                 vId = verificationId;
             }
         };
 
         binding.setPhoneNum("");
         binding.setPhoneNum(getPhoneNumber());
-        binding.btnAuthPhone1.setOnClickListener(v -> startPhoneAuth(binding.getPhoneNum()));
+        binding.btnAuthPhone1.setOnClickListener(v -> {
+            phoneNum = binding.getPhoneNum();
+            startPhoneAuth(phoneNum);
+        });
     }
 
     @Override
@@ -81,26 +81,29 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 String code = data.getStringExtra("authInput");
-
-                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(vId, code);
-                signInWithPhoneAuthCredential(credential);
+                try {
+                    PhoneAuthCredential credential = PhoneAuthProvider.getCredential(vId, code);
+                    signInWithPhoneAuthCredential(credential);
+                }catch(Exception e){
+                    Toast.makeText(this, "네트워크 연결이 원활하지 않거나, 메모리가 부족합니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
 
     private void startPhoneAuth(String phoneInputNumber) {
-        String phoneNumber = "+82" + phoneInputNumber;
+        String phoneNum = "+82" + phoneInputNumber;
 
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phoneNumber)
+                        .setPhoneNumber(phoneNum)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(mCallbacks)
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
 
-        Toast.makeText(this, "캡챠 인증을 진행해주세요.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "캡챠 인증을 진행해주세요.", Toast.LENGTH_LONG).show();
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
@@ -108,13 +111,21 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(LoginAndRegisterActivity.this, "성공!", Toast.LENGTH_SHORT).show();
-                        FirebaseUser user = task.getResult().getUser();
+                        goToNextStep();
+                        //FirebaseUser user = task.getResult().getUser();
                     } else {
                         Toast.makeText(LoginAndRegisterActivity.this, "실패", Toast.LENGTH_SHORT).show();
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
                             invalidCodeReStartActivity();
                     }
                 });
+    }
+
+    private void goToNextStep(){
+        Intent intent = new Intent(this, writeInfoActivity.class);
+        intent.putExtra("phone", phoneNum);
+        startActivity(intent);
+        finish();
     }
 
     private void invalidCodeReStartActivity() {

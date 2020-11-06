@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="phone"
+            type="String" />
+
+        <variable
+            name="name"
+            type="String" />
+
+        <variable
+            name="schoolName"
+            type="String" />
+
+        <variable
+            name="schoolCode"
+            type="String" />
+
+        <variable
+            name="class1"
+            type="String" />
+
+        <variable
+            name="class2"
+            type="String" />
+
+        <variable
+            name="class3"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_reg_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:includeFontPadding="false"
+            android:text="회원가입 정보 입력"
+            android:textColor="@color/pink_700"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/btn_reg_submit"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_reg_title">
+
+            <EditText
+                android:id="@+id/edt_register_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:background="@drawable/round_corner"
+                android:fontFamily="@font/nanumsquareb"
+                android:hint="이름(실명)"
+                android:inputType="textPersonName"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="16dp"
+                android:text="@={name}"
+                android:maxLines="1"
+                android:textColor="@color/pink_700"
+                android:textColorHint="@color/pink_300"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_register_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_register_name">
+
+                <EditText
+                    android:id="@+id/edt_register_school"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/round_corner"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:hint="학교이름"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="textCapSentences"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="16dp"
+                    android:text="@={schoolName}"
+                    android:textColor="@color/pink_700"
+                    android:textColorHint="@color/pink_300"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_find_school"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/btn_find_school"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corner"
+                    android:fontFamily="@font/nanumsquarexb"
+                    android:includeFontPadding="false"
+                    android:letterSpacing="0"
+                    android:maxLines="1"
+                    android:text="학교찾기"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_register_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_register_1">
+
+                <EditText
+                    android:id="@+id/edt_reg_class_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corner"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:gravity="center"
+                    android:hint="학년"
+                    android:includeFontPadding="false"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:text="@={class1}"
+                    android:textColor="@color/pink_700"
+                    android:textColorHint="@color/pink_300"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_reg_class_1"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_reg_class_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="14dp"
+                    android:text="학년"
+                    android:textColor="@color/pink_700"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/edt_reg_class_2"
+                    app:layout_constraintStart_toEndOf="@+id/edt_reg_class_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edt_reg_class_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corner"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:gravity="center"
+                    android:hint="반"
+                    android:includeFontPadding="false"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:text="@={class2}"
+                    android:textColor="@color/pink_700"
+                    android:textColorHint="@color/pink_300"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/txt_reg_class_2"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/txt_reg_class_1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_reg_class_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="14dp"
+                    android:text="반"
+                    android:textColor="@color/pink_700"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/edt_reg_class_3"
+                    app:layout_constraintStart_toEndOf="@+id/edt_reg_class_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edt_reg_class_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_corner"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:gravity="center"
+                    android:hint="번호"
+                    android:includeFontPadding="false"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:maxLines="1"
+                    android:padding="16dp"
+                    android:text="@={class3}"
+                    android:textColor="@color/pink_700"
+                    android:textColorHint="@color/pink_300"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/txt_reg_class_3"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/txt_reg_class_2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_reg_class_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:paddingStart="8dp"
+                    android:text="번"
+                    android:textColor="@color/pink_700"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/edt_reg_class_3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_reg_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/round_corner"
+                android:fontFamily="@font/nanumsquareb"
+                android:includeFontPadding="false"
+                android:letterSpacing="0.01"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="16dp"
+                android:text="@{phone}"
+                android:textColor="@color/pink_700"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraint_register_2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <Button
+            android:id="@+id/btn_reg_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="48dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/round_box"
+            android:fontFamily="@font/nanumsquarexb"
+            android:includeFontPadding="false"
+            android:letterSpacing="0"
+            android:text="회원가입"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
