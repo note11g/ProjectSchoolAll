@@ -37,6 +37,7 @@
             android:fontFamily="@font/nanumsquareb"
             android:hint="검색할 학교 이름"
             android:inputType="textCapSentences"
+            android:textColor="@color/white"
             android:padding="18dp"
             android:text="@={schoolName}"
             android:textColorHint="@color/white"
@@ -45,6 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar_find_school" />
 
         <ImageButton
+            android:id="@+id/btn_search"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="12dp"
@@ -56,6 +58,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            tools:listitem="@layout/row_find_school"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_find_school" />
 
