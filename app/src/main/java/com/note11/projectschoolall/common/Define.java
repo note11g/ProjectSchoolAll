@@ -15,13 +15,12 @@ public class Define {
     public String LastMonth = "";
     public String[] slunch;
 
-    public String[] Schools;
     public String SchoolName = "";
-    public String Grade = "";
-    public String ClassNum = "";
 
-    public List<String> mList = new ArrayList<>();
-    public ArrayList<String> mArrList = new ArrayList<>();
+    public String tv_eduscadu1;
+    public String tv_eduscadu2;
+    public String tv_timetable = "";
+    public String tv_lunch = "";
 
     public Boolean bCheck = true;
 

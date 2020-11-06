@@ -1,20 +1,19 @@
 package com.note11.projectschoolall.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.note11.projectschoolall.R;
-import com.note11.projectschoolall.SetSchoolInfo;
+import com.note11.projectschoolall.activity.fragment.HomeFragment;
 import com.note11.projectschoolall.common.Define;
 import com.note11.projectschoolall.databinding.ActivityFindSchoolBinding;
 import com.note11.projectschoolall.listview.MyAdapter;
@@ -25,23 +24,21 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class FindSchoolActivity extends AppCompatActivity {
 
     private ActivityFindSchoolBinding binding;
     MyAdapter cMyAdapter;
-    SetSchoolInfo cSetSchoolInfo;
+    HomeFragment cHomeFragment;
 
     ListView mlistView;
     EditText mEditText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_school);
+        setContentView(R.layout.fragment_home);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_find_school);
 
         if(!getIntent().getStringExtra("schoolName").isEmpty()){
@@ -87,7 +84,6 @@ public class FindSchoolActivity extends AppCompatActivity {
         setResult(RESULT_OK, intent);
         finish();
     }
-
 
     private class Description extends AsyncTask<Void, Void, Void> {
 
