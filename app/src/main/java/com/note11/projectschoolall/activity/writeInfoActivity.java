@@ -36,7 +36,7 @@ public class writeInfoActivity extends AppCompatActivity {
         binding.btnRegSubmit.setOnClickListener(v->submit(
                 binding.getName(),
                 binding.getSchoolName(),
-                "학교코드",
+                binding.getSchoolCode(),
                 binding.getClass1(),
                 binding.getClass2(),
                 binding.getClass3()

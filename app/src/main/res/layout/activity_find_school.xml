@@ -55,7 +55,8 @@
             app:layout_constraintEnd_toEndOf="@+id/edt_find_school"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_find_school" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <ListView
+            android:id="@+id/lv_schools"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             tools:listitem="@layout/row_find_school"
