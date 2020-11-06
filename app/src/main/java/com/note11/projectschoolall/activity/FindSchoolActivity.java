@@ -34,11 +34,12 @@ public class FindSchoolActivity extends AppCompatActivity {
     }
 
     private void search(String schoolName){
-        //검색버튼을 누르면 이 함수가 호출됨.
-        //그때, 검색단어가 schoolName으로 들어오는데, 그걸 Api에 집어넣어서 반환 받고
-        //여러개중 일치하는 애들 리사이클러뷰에 표시 (없으면 검색결과가 없다고 토스트 띄우기)
-        //그 중에 하나 누르면 그걸로 학교코드 반환함수를 실행.
-        //반환함수 : selectSucceed("학교코드", "학교 이름");
+        //이 함수에서, schoolName으로 학교를 찾아, 리사이클러뷰에 표시.
+        //리사이클러뷰에 (학교이름)항목을 표시하고,
+        // 클릭시 해당 학교로
+        // selectSucceed(학교코드, 학교이름)실행
+
+        Toast.makeText(this, "검색 : "+schoolName, Toast.LENGTH_SHORT).show();
         selectSucceed("", schoolName);
     }
 
