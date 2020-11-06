@@ -35,4 +35,11 @@
         <item name="android:letterSpacing">0</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:colorForeground">@android:color/white</item>
+        <item name="android:fontFamily">@font/nanumsquarexb</item>
+    </style>
 </resources>

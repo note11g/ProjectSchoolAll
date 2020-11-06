@@ -1,63 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="phoneNum"
             type="String" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquareb"
-            android:lineSpacingExtra="4dp"
-            android:text="즐거운 학교 생활을 한눈에!"
+            android:gravity="center"
+            android:lineSpacingExtra="12dp"
+            android:text="즐거운 학교 생활을 한눈에!\n클래스메이트"
             android:textColor="@color/pink_700"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_1"
+            app:layout_constraintBottom_toTopOf="@+id/txt_sec_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/txt_sec_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/kopubm"
-            android:text="전화번호로 로그인(가입)할 수 있어요!"
-            android:textSize="15sp"
             android:letterSpacing="0.015"
+            android:text="전화번호로 로그인하거나, 가입할 수 있어요!"
             android:textColor="@color/materialGray5"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@+id/edt_auth_phone_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
             android:id="@+id/edt_auth_phone_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_auth_phone1"
-            android:hint="01012345678"
-            android:fontFamily="@font/nanumsquareb"
-            android:textColorHint="@color/pink_500"
-            android:textColor="@color/pink_500"
             android:background="@drawable/round_corner"
-            android:paddingVertical="16dp"
-            android:paddingHorizontal="20dp"
+            android:fontFamily="@font/nanumsquareb"
+            android:hint="01012345678"
             android:includeFontPadding="false"
-            android:textSize="15sp"
             android:inputType="phone"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="16dp"
             android:text="@={phoneNum}"
-            app:layout_constraintVertical_chainStyle="packed"
+            android:textColor="@color/pink_500"
+            android:textColorHint="@color/pink_300"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_auth_phone1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_sec_title"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
             android:id="@+id/btn_auth_phone1"
@@ -66,9 +73,9 @@
             android:layout_marginHorizontal="48dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/round_box"
+            android:fontFamily="@font/nanumsquareb"
             android:text="다음"
             android:theme="@style/ButtonStyle"
-            android:fontFamily="@font/nanumsquareb"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

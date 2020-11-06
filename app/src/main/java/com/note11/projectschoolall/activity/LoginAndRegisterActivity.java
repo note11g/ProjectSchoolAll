@@ -20,8 +20,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.note11.projectschoolall.R;
 import com.note11.projectschoolall.databinding.ActivityLoginAndRegisterBinding;
+import com.note11.projectschoolall.model.UserModel;
+import com.note11.projectschoolall.util.UserCache;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -84,7 +89,7 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
                 try {
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(vId, code);
                     signInWithPhoneAuthCredential(credential);
-                }catch(Exception e){
+                } catch (Exception e) {
                     Toast.makeText(this, "네트워크 연결이 원활하지 않거나, 메모리가 부족합니다.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -92,6 +97,10 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
     }
 
     private void startPhoneAuth(String phoneInputNumber) {
+        if(phoneInputNumber.isEmpty()){
+            Toast.makeText(this, "전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         String phoneNum = "+82" + phoneInputNumber;
 
         PhoneAuthOptions options =
@@ -110,27 +119,51 @@ public class LoginAndRegisterActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(LoginAndRegisterActivity.this, "성공!", Toast.LENGTH_SHORT).show();
-                        goToNextStep();
-                        //FirebaseUser user = task.getResult().getUser();
+                        Toast.makeText(LoginAndRegisterActivity.this, "인증 성공!", Toast.LENGTH_SHORT).show();
+                        isInDB();//기존회원인지 체크
                     } else {
-                        Toast.makeText(LoginAndRegisterActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginAndRegisterActivity.this, "인증 실패", Toast.LENGTH_SHORT).show();
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException)
                             invalidCodeReStartActivity();
                     }
                 });
     }
 
-    private void goToNextStep(){
+    private void goToNextStep() {
+        //새 계정
         Intent intent = new Intent(this, writeInfoActivity.class);
         intent.putExtra("phone", phoneNum);
         startActivity(intent);
+        this.finish();
+    }
+
+    private void goHome(UserModel userModel) {
+        //기존 계정 존재
+        UserCache.setUser(this, userModel);
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
     private void invalidCodeReStartActivity() {
         Toast.makeText(this, "인증 코드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
         startActivityForResult(new Intent(this, PhoneAuth2Activity.class), 1);
+    }
+
+    private void isInDB() {
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(phoneNum);
+        docRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    goHome(document.toObject(UserModel.class));//기존회원
+                } else {
+                    goToNextStep();
+                }
+            } else {
+                Toast.makeText(this, "인터넷이 불안정합니다.", Toast.LENGTH_SHORT).show();
+                goToNextStep();
+            }
+        });
     }
 
     @SuppressLint("MissingPermission")

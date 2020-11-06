@@ -12,7 +12,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.note11.projectschoolall.R;
+import com.note11.projectschoolall.util.UserCache;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,17 +25,33 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        if (getPermission()) {
-            new Handler().postDelayed(this::goToLogin, 2000);
+
+        if (isNew()) {
+            if (getPermission())
+                new Handler().postDelayed(this::goToLogin, 1500);
+        } else {
+            new Handler().postDelayed(this::goToMain, 1500);
         }
-
-
     }
 
     private void goToLogin() {
-
         startActivity(new Intent(this, LoginAndRegisterActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         finish();
+    }
+
+    private void goToMain() {
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
+    }
+
+    private boolean isNew() {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null
+                && UserCache.getUser(this) != null)
+            return false;
+        else
+            return true;
     }
 
     private boolean getPermission() {
@@ -49,10 +67,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == READ_SMS) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "권한 허용됨", Toast.LENGTH_SHORT).show();
-            }
             goToLogin();
         }
     }
