@@ -5,7 +5,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.note11.projectschoolall.R;
 import com.note11.projectschoolall.activity.fragment.ContactFragment;
 import com.note11.projectschoolall.activity.fragment.HomeFragment;
@@ -44,4 +48,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.replace(R.id.frame_main, fragment);
         transaction.commit();
     }
+
+
 }

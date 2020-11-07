@@ -18,7 +18,7 @@
             android:id="@+id/bottom_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/pink_500"
+            android:background="@color/white"
             android:paddingVertical="2dp"
             android:theme="@style/BottomNavigationTheme"
             app:labelVisibilityMode="labeled"
